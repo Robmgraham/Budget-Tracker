@@ -1,22 +1,24 @@
 var mongoose = require("mongoose");
-var db = require("../models");
+var Transaction = require("../models");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/serviceWorkerDemo", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
   useNewUrlParser: true
 });
 
 var postSeed = [
     {
-        name: {
-            required: {type:String},
-        },
-        value: {
-            required: {type:String},
-        },
+        name: "budget",
+        value:  "",
         date: {
             default: Date.now   
         }
     }
 ]
-
-module.exports = postSeed
+Transaction.insertMany(body)
+.then(dbTransaction => {
+  res.json(dbTransaction);
+})
+.catch(err => {
+  res.status(404).json(err);
+});
+ 
