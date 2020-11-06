@@ -15,7 +15,10 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/budget", {
+
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/budget"
+
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useFindAndModify: false
 });
